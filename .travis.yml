@@ -8,7 +8,8 @@ branches:
     - master
 
 install:
-  - "pip install pytest-cov coveralls pyyaml config_manager"
+  - "pip install pytest-cov coveralls pyyaml"
+  - "pip install config-manager"
 
 script:
   - "py.test --cov-config .coveragerc  --cov config_logger"
