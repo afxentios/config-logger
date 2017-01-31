@@ -6,12 +6,11 @@ try:
     from config_manager import ConfigManager, FileFormatError
 except ImportError:
     print (
-    "[-] The config_manager module is needed to read the logging configurations.\nDo `pip install config_manager`")
+        "[-] The config_manager module is needed to read the logging configurations.\nDo `pip install config_manager`")
     raise
 
 
-class Logger:
-
+class Logger(object):
     def __init__(
             self,
             name,
@@ -44,7 +43,7 @@ class Logger:
         try:
             config = ConfigManager(config_file_path=path, defaults=self.default_conf,
                                    required=['version']) if self.cfg_path else self.default_conf
-            logging.config.dictConfig(config)
+            dictConfig(config)
             logger = logging.getLogger(self.name)
         except (ValueError, IOError, FileFormatError):
             logging.basicConfig(level=self.default_level)
