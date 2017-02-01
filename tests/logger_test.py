@@ -94,7 +94,14 @@ class LoggerTest(unittest.TestCase):
         }
     }
 
-    config2 = {'version': 1, 'disable_existing_loggers': False, 'root': {'level': 'WARNING'}}
+    config2 = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'root':
+            {
+                'level': 'WARNING'
+            }
+    }
 
     @patch.object(ConfigManager, 'load_config')
     def test_logger_constructor(self, mocked_config):

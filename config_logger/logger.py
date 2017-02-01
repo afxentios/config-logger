@@ -25,6 +25,7 @@ class Logger(object):
                 name - Name of the Logger instance.
                 cfg_path - Path of the logging configuration file.
                 default_level - Default logging level.
+                default_conf - Dictionary with the default values for the config files.
                 env_key - Environment variable which can be set to load the logging configuration from specific path.
 
         """

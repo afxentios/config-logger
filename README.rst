@@ -111,6 +111,8 @@ Configured from dictionary
 
     2017-01-31 13:12:56,002 - my_logger - WARNING - This will be written in a file called warning.log
 
+*Note: You can find sample of logging configuration files supported by config-logger in* `this repo`_.
+
 
 License
 -------
@@ -121,3 +123,4 @@ This project is licensed under the MIT license.
 .. _Issue tracker: https://github.com/afxentios/config-logger/issues
 .. _latest release: https://github.com/afxentios/config-logger/releases
 .. _Configuration dictionary schema: https://docs.python.org/3/library/logging.config.html#logging-config-dictschema
+.. _this repo: https://github.com/afxentios/python_logging_configuration_sample
