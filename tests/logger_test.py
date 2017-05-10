@@ -21,22 +21,11 @@ class LoggerTest(unittest.TestCase):
                 'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
             },
         },
-        'filters': {
-             'debug_special': {
-                 '()': 'hf_logger.filters.SameLevelFilter',
-                 'level': 'logging.DEBUG',
-             },
-             'critical_special': {
-                 '()': 'hf_logger.filters.LessEqualLevelFilter',
-                 'level': 'logging.CRITICAL',
-             }
-         },
         'handlers': {
             'console': {
                 'class': 'logging.StreamHandler',
                 'level': 'DEBUG',
                 'formatter': 'basic',
-                'filters': ['debug_special'],
                 'stream': 'ext://sys.stdout'
             },
         },
@@ -60,6 +49,16 @@ class LoggerTest(unittest.TestCase):
                 'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
             }
         },
+        'filters': {
+            'info_special': {
+                '()': 'config_logger.filters.SameLevelFilter',
+                'level': 'logging.INFO',
+            },
+            'critical_special': {
+                '()': 'config_logger.filters.LessEqualLevelFilter',
+                'level': 'logging.CRITICAL',
+            }
+        },
         'handlers': {
             'console': {
                 'class': 'logging.StreamHandler',
@@ -71,6 +70,7 @@ class LoggerTest(unittest.TestCase):
                 'class': 'logging.StreamHandler',
                 'formatter': 'basic',
                 'level': 'CRITICAL',
+                'filters': ['critical_special'],
                 'stream': 'ext://sys.stdout'
             },
             'error_file_handler': {
@@ -83,6 +83,7 @@ class LoggerTest(unittest.TestCase):
                 'class': 'logging.StreamHandler',
                 'formatter': 'basic',
                 'level': 'INFO',
+                'filters': ['info_special'],
                 'stream': 'ext://sys.stdout'
             },
             'warning_file_handler': {
