@@ -1,5 +1,9 @@
 # History of changes
 
+## Version 1.0.2 (05/06/17)
+
+* Includes support for extra custom attributes
+
 ## Version 1.0.1 (08/05/17)
 
 * Provides predefined logging level-filters.

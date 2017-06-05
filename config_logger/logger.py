@@ -17,6 +17,7 @@ class Logger(object):
             cfg_path=None,
             default_level=logging.INFO,
             default_conf=None,
+            extra=None,
             env_key='CONF_PATH'
     ):
         """Create and initialize a Logger object.
@@ -34,6 +35,7 @@ class Logger(object):
         self.default_level = default_level
         self.default_conf = default_conf
         self.env_key = env_key
+        self.extra = extra
         self.logger = self.setup_logging()
 
     def setup_logging(self):
@@ -50,6 +52,10 @@ class Logger(object):
             logging.basicConfig(level=self.default_level)
             logger = logging.getLogger(self.name)
             logger.setLevel(self.default_level)
+
+        if self.extra:
+            logger = logging.LoggerAdapter(logger, self.extra)
+
         return logger
 
     def debug(self, msg, *args, **kwargs):

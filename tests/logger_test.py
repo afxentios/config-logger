@@ -115,6 +115,30 @@ class LoggerTest(unittest.TestCase):
             }
     }
 
+    config3 = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'basic': {
+                'format': '%(asctime)s - %(passed_argument_1)s - %(passed_argument_2)s - %(levelname)s - %(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'level': 'DEBUG',
+                'formatter': 'basic',
+                'stream': 'ext://sys.stdout'
+            },
+        },
+        'loggers': {
+            'sut_logger': {
+                'level': 'DEBUG',
+                'handlers': ['console']
+            },
+        }
+    }
+
     @patch.object(ConfigManager, 'load_config')
     def test_logger_constructor(self, mocked_config):
         # Given
@@ -225,3 +249,17 @@ class LoggerTest(unittest.TestCase):
         logger.critical('a critical error')
         # Then
         l.check(('root_logger', 'CRITICAL', 'a critical error'))
+
+    @patch.object(ConfigManager, 'load_config')
+    def test_extra_parameters_passed(self, mocked_config):
+        # Given
+        mocked_config.return_value = None
+        name = 'sut_logger'
+        # When
+        logger = Logger(name=name, default_conf=self.config3, extra={'passed_argument_1': 'A contextual info',
+                                                                     'passed_argument_2': 'Another contextual info'})
+        # Then
+        self.assertEqual(logger.logger.logger.handlers[0].formatter._fmt,
+                         '%(asctime)s - %(passed_argument_1)s - %(passed_argument_2)s - %(levelname)s - %(message)s')
+        self.assertEqual(logger.logger.logger.name, 'sut_logger')
+        self.assertEqual(logging.getLevelName(logger.logger.logger.level), 'DEBUG')
