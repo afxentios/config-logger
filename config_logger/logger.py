@@ -1,13 +1,16 @@
 import logging
 import os
+import sys
 from logging.config import dictConfig
 
 try:
     from config_manager import ConfigManager, FileFormatError
 except ImportError:
-    print (
-        "[-] The config_manager module is needed to read the logging configurations.\nDo `pip install config_manager`")
-    raise
+    sys.exit("""
+                The config_manager module is needed to read the logging configurations,
+                install it from https://pypi.org/project/config-manager/
+                or run pip install config-manager.
+            """)
 
 
 class Logger(object):
