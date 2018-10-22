@@ -18,7 +18,7 @@ setup(name='config-logger',
       author_email='afxentios@hadjimina.com',
       keywords=["logging", "configurable", "configuration"],
       packages=find_packages(),
-      install_requires=['logging', 'PyYAML', 'config-manager', 'testfixtures'],
+      install_requires=['PyYAML', 'config-manager', 'testfixtures'],
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
