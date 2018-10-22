@@ -1,5 +1,9 @@
 # History of changes
 
+## Version 1.1.0 (22/10/18)
+
+* Support for Python 3, 3.6 and 3.7
+
 ## Version 1.0.2 (05/06/17)
 
 * Includes support for extra custom attributes
