@@ -119,7 +119,7 @@ License
 
 This project is licensed under the MIT license.
 
-.. _Changelog: https://github.com/afxentios/config-logger/blob/master/CHANGELOG.md
+.. _Changelog: https://github.com/afxentios/config-logger/blob/master/CHANGELOG.rst
 .. _Issue tracker: https://github.com/afxentios/config-logger/issues
 .. _latest release: https://github.com/afxentios/config-logger/releases
 .. _Configuration dictionary schema: https://docs.python.org/3/library/logging.config.html#logging-config-dictschema

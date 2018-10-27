@@ -6,11 +6,17 @@ from logging.config import dictConfig
 try:
     from config_manager import ConfigManager, FileFormatError
 except ImportError:
-    sys.exit("""
-                The config_manager module is needed to read the logging configurations,
-                install it from https://pypi.org/project/config-manager/
-                or run pip install config-manager.
-            """)
+    if sys.version_info < (3, 0, 0):
+        print("[-] The config_manager module is needed to read the logging configurations"
+              "\ninstall it from https://pypi.org/project/config-manager/"
+              "\nor run `pip install config-manager`.")
+        raise
+    else:
+        sys.exit("""
+                    The config_manager module is needed to read the logging configurations,
+                    install it from https://pypi.org/project/config-manager/
+                    or run `pip install config-manager`.
+                """)
 
 
 class Logger(object):

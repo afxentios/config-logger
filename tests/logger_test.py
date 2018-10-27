@@ -1,3 +1,5 @@
+import sys
+
 try:
     import unittest2 as unittest
 except ImportError:
@@ -6,7 +8,21 @@ except ImportError:
 import logging
 
 from config_manager import ConfigManager
-from mock import patch
+
+try:
+    from mock import patch
+except ImportError:
+    if sys.version_info < (3, 0, 0):
+        print("[-] The mock module is needed to create mock objects,"
+              "\ninstall it from https://pypi.org/project/mock/"
+              "\nor run `pip install mock`.")
+        raise
+    else:
+        sys.exit("""
+                    The mock module is needed to create mock objects,
+                    install it from https://pypi.org/project/mock/    
+                    or run `pip install mock`.
+                """)
 from testfixtures import log_capture
 
 from config_logger import Logger

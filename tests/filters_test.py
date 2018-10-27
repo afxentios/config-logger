@@ -1,9 +1,24 @@
+import sys
+
 try:
     import unittest2 as unittest
 except ImportError:
     import unittest
 
-from mock import Mock
+try:
+    from mock import Mock
+except ImportError:
+    if sys.version_info < (3, 0, 0):
+        print("[-] The mock module is needed to create mock objects,"
+              "\ninstall it from https://pypi.org/project/mock/"
+              "\nor run `pip install mock`.")
+        raise
+    else:
+        sys.exit("""
+                    The mock module is needed to create mock objects,
+                    install it from https://pypi.org/project/mock/    
+                    or run `pip install mock`.
+                """)
 
 from config_logger import SameLevelFilter, LessEqualLevelFilter
 
